@@ -25,16 +25,16 @@ function prompts() {
     prompts();
   }
   else if(pwdCriteria.charLength > 128){
-    alert("Woah there. way to spicy!\nTry a number below 128")
+    alert("Woah there. Way to spicy!\nTry a number below 128")
     prompts();
   }
   else if(pwdCriteria.charLength < 8){
-    alert("hmm dont think " + pwdCriteria.charLength+ " is gonna cut it...\nTry a number above 8")
+    alert("hmm don't think " + pwdCriteria.charLength+ " is gonna cut it...\nTry a number above 8")
     prompts();
   }
   // define the criteria
   pwdCriteria.includeLowercase = confirm("Can I interest you in some lowercase letters?\nPress OK for yes or Cancel for no.");
-  pwdCriteria.includeUppercase = confirm("Alright!, how about some uppercase letters?\nPress OK if you want 'em or Cancel if you don't.");
+  pwdCriteria.includeUppercase = confirm("Alright! how about some uppercase letters?\nPress OK if you want 'em or Cancel if you don't.");
   pwdCriteria.includeNumbers = confirm("Do you want numbers with that?\nPress OK for \"You Know it!\" or Cancel for \"Hold the Nums\"");
   pwdCriteria.includeSymbols = confirm("Can't go wrong with symbols amarite?\nPress OK for \"Don't mind if I do!\" or Cancel for \"Maybe Next time\".");
   
