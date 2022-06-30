@@ -10,14 +10,19 @@ const pwdElements = {
 // function declarations:
 
 function prompts() {
-
   // keep all criteria in an object
   const pwdCriteria = {};
 
   pwdCriteria.charLength = prompt("Choose a Password Length Between 8 and 128 \nOr press Cancel to quit","8");
- 
-  if(!pwdCriteria.charLength){
+  // check if they clicked cancel
+  if (pwdCriteria.charLength === null){
     return "exit";
+  }
+//convert answer to an int so you can check if they entered letters or valid numbers
+  pwdCriteria.charLength = parseInt(pwdCriteria.charLength);
+  if(isNaN(pwdCriteria.charLength)){
+    alert("Are you Kidding?\nTry a number, ok?")
+    prompts();
   }
   else if(pwdCriteria.charLength > 128){
     alert("Woah there. way to spicy!\nTry a number below 128")
@@ -51,18 +56,36 @@ function prompts() {
 
 function generatePassword(){
   let pwdBlueprint = prompts();
+  let pool = ""
+  let result = ""
   if(pwdBlueprint == "exit"){
     return null;
   }
   else{
+    if(pwdBlueprint.includeLowercase){
+      pool += pwdElements.lowercase
+    }
+    if(pwdBlueprint.includeNumbers){
+      pool += pwdElements.numbers      
+    }
+    if(pwdBlueprint.includeSymbols){
+      pool += pwdElements.symbols
+    }
+    if(pwdBlueprint.includeUppercase){
+      pool+= pwdElements.uppercase
+    }
+    
+    for (var i = 0; i <= pwdBlueprint.charLength; i++) {
+      var randomNumber = Math.floor(Math.random() * pool.length);
+      result += pool.substring(randomNumber, randomNumber +1);
+     }
 
-
+     return result;
 
   }
 }
 
 function writePassword() {
-  debugger;
   var password = generatePassword();
   var passwordText = document.querySelector("#password");
   // if (password == null ) {
@@ -78,4 +101,5 @@ function writePassword() {
 
 // Add event listener to generate button
 generateBtn.addEventListener("click", writePassword);
+
 
